@@ -1,0 +1,22 @@
+package config
+
+import (
+	"fmt"
+	"log"
+
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+)
+
+var DB *gorm.DB
+
+func ConnectDatabase() {
+	dsn := Cfg.DatabaseURL
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		log.Fatalf("Failed to connect to database: %v", err)
+	}
+
+	DB = db
+	fmt.Println("Connected to  PostgreSQL")
+}

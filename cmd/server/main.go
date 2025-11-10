@@ -10,6 +10,7 @@ import (
 
 func main() {
 	config.LoadConfig()
+	config.ConnectDatabase()
 	port := config.Cfg.Port
 
 	fmt.Printf("🚀 Auth Master running on port %d in %s mode\n", port, config.Cfg.Env)
