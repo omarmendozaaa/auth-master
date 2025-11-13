@@ -12,10 +12,17 @@ import (
 func main() {
 	config.LoadConfig()
 	config.ConnectDatabase()
-	err := config.DB.AutoMigrate(&models.Project{})
+
+	err := config.DB.AutoMigrate(
+		&models.Project{},
+		&models.User{},
+		&models.Role{},
+		&models.UserProject{},
+	)
 	if err != nil {
 		log.Fatalf("Migration failed: %v", err)
 	}
+
 	fmt.Println("Database migrated successfully")
 
 	port := config.Cfg.Port
