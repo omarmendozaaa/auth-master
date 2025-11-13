@@ -8,13 +8,13 @@ import (
 )
 
 type Project struct {
-	ID           uuid.UUID `gorm:"type:uuid;default:gen_random_uuid();primaryKey" json:"id"`
-	Name         string    `gorm:"not null" json:"name"`
-	Description  string    `json:"description"`
-	ClientID     string    `gorm:"uniqueIndex;not null" json:"client_id"`
-	ClientSecret string    `gorm:"uniqueIndex;not null" json:"client_secret"`
-	CreatedAt    time.Time `gorm:"autoCreateTime" json:"created_at"`
-	UpdatedAt    time.Time `gorm:"autoUpdateTime" json:"updated_at"`
+	ID           uuid.UUID `gorm:"type:uuid;default:gen_random_uuid();primaryKey"`
+	Name         string    `gorm:"not null"`
+	Description  string
+	ClientID     string    `gorm:"uniqueIndex;not null"`
+	ClientSecret string    `gorm:"uniqueIndex;not null"`
+	CreatedAt    time.Time `gorm:"autoCreateTime"`
+	UpdatedAt    time.Time `gorm:"autoUpdateTime"`
 }
 
 func (project *Project) BeforeCreate(tx *gorm.DB) (err error) {
